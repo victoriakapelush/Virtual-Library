@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap" rel="stylesheet">
+    <title>Virtual Library</title>
+</head>
+<body>
+    <header id="header">
+        <h1>Virtual Library</h1>
+        <button type="button" class="btn btn-secondary btn-lg" id="login-btn">Log In</button>
+    </header>
+    <button type="button" class="btn btn-secondary btn-lg" id="addBook-btn">+ Add book</button>
+    <div id="add-new-book" hidden>
+        <div id="add-new-book-title">Add new book</div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default-author">Author</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default-pages">Pages</span>
+        </div>
+        <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+      </div>
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck1">
+        <label class="custom-control-label" for="customCheck1">Have you read it?</label>
+      </div>
+      <input class="btn btn-primary" type="submit" value="Submit">
+    </div>
+    <div id="grid-table">
+        <div id="book-data">
+            <div id="added-title"></div>
+            <div id="added-author"></div>
+            <div id="added-pages"></div>
+            <button type="button" class="btn btn-success">Read</button>
+            <button type="button" class="btn btn-secondary">Remove</button>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+<footer>Copyright © 2022 <a href="https://github.com/victoriakapelush">victoriakapelush</a></footer>
+</html>
