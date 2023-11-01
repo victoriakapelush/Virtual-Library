@@ -64,7 +64,7 @@ a, a:hover {
     flex-wrap: wrap;
 }
 
-.books-data {
+#books-data {
     display: grid;
     gap: 10px;
     background-color: #fffbfb;

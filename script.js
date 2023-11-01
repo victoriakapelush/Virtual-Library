@@ -1,78 +1,65 @@
-const addBook = document.getElementById('addBook-btn');
+const addBookButton = document.getElementById("addBook-btn");
+const submitButton = document.getElementById("submit");
+const gridTable = document.getElementById("grid-table");
 
-const checkbox = document.getElementById('customCheck1');
+//enter book details when a button is clicked 
+addBookButton.addEventListener("click", function() {
+    document.getElementById("add-new-book").style.display = "block"
+});
 
-const submit = document.getElementById('submit');
-
-const titleBtn = document.getElementById('titleBtn');
-const authorBtn = document.getElementById('authorBtn');
-const pagesBtn = document.getElementById('pagesBtn');
-
-const library = [];
-
-addBook.addEventListener('click', function() {
-    document.getElementById('add-new-book').style.display = "block";
+submitButton.addEventListener("click", function() {
+    document.getElementById("add-new-book").style.display = "none";
+    displayBook();
 })
 
+function displayBook() {
+    let bookContainer = document.createElement('div');
+    gridTable.appendChild(bookContainer).setAttribute('id', 'books-data');
 
-submit.addEventListener('click', function() {
-    document.getElementById('add-new-book').style.display='none';
-    createNewBook();
-})
-
-    function createNewBook() {
-    const index = library.length;
-    library[index] = {
-        title: titleBtn.value,
-        author: authorBtn.value,
-        pages: pagesBtn.value,
-        isRead: checkbox.checked
-    };
-
-    const gridTable = document.getElementById('grid-table');
-    const booksData = document.createElement('div');
-    gridTable.append(booksData);
-    booksData.setAttribute('class', 'books-data');
+    //create title of a book
+    let titleContainer = document.createElement('div');
+    bookContainer.appendChild(titleContainer).setAttribute('class', 'title-container');
+    titleContainer.textContent = "Title: " + document.getElementById('titleBtn').value;
     
-    const books_data1 = document.getElementsByClassName('books-data');
-    const books_data = books_data1[books_data1.length-1];
-    const titleDiv = document.createElement('div');
-    books_data.append(titleDiv);
-    titleDiv.setAttribute('id', 'added-title');
-    titleDiv.textContent = library[index].title;
+    //create name of a book
+    let authorContainer = document.createElement('div');
+    bookContainer.appendChild(authorContainer).setAttribute('class', 'author-container');
+    authorContainer.textContent = "Author: " + document.getElementById('authorBtn').value;
 
-    const authorDiv = document.createElement('div');
-    books_data.append(authorDiv);
-    authorDiv.setAttribute('id', 'added-author');
-    authorDiv.textContent = library[index].author;
+    //create pages of a book
+    let pagesContainer = document.createElement('div');
+    bookContainer.appendChild(pagesContainer).setAttribute('class', 'pages-container');
+    pagesContainer.textContent = document.getElementById('pagesBtn').value + " pages";
 
-    const pagesDiv = document.createElement('div');
-    books_data.append(pagesDiv);
-    pagesDiv.setAttribute('id', 'added-pages');
-    pagesDiv.textContent = library[index].pages + " pages";
+    //is book read or not yet
+    const isRead = document.createElement('button');
+    bookContainer.appendChild(isRead);
 
-    const read = document.createElement('button');
-    read.setAttribute('class', 'btn btn-success read-button');
-    read.textContent = "Read";
-    books_data.append(read);
-
-    if (!library[index].isRead) {
-        read.remove();
-        const notread = document.createElement('button');
-        notread.setAttribute('class', 'btn btn-danger read-button');
-        notread.textContent = "Not Read";
-        books_data.append(notread);
+    if (document.getElementById('customCheck1').checked) {
+        isRead.setAttribute('class', 'btn btn-success read-button');
+        isRead.textContent = "Read";
+    } else {
+        isRead.setAttribute('class', 'btn btn-danger read-button');
+        isRead.textContent = "Not Read";
     }
-    
-    const remove = document.createElement('button');
-    remove.setAttribute('class', 'btn btn-secondary remove-button');
-    remove.textContent = "Remove";
-    books_data.append(remove);
+    //change the mode from "read" to "not read" and back
+    isRead.addEventListener('click', function() {
+        if (isRead.className === "btn btn-success read-button") {
+            isRead.className = "btn btn-danger read-button";
+            isRead.textContent = "Not Read";
+        } else if (isRead.className === "btn btn-danger read-button") {
+            isRead.className = "btn btn-success read-button";
+            isRead.textContent = "Read";
+        }
+    })
 
-    const removeBook = document.getElementsByClassName('remove-button')[index];
-    removeBook.addEventListener('click', function() {
-        document.querySelectorAll('.books-data')[index].remove();
-        library.splice(index, 1);
-    })}
+    //add "Remove" button
+    const removeButton = document.createElement('button');
+    bookContainer.appendChild(removeButton);
+    removeButton.setAttribute('class', 'btn btn-secondary remove-button');
+    removeButton.textContent = "Remove";
 
-
+    removeButton.addEventListener('click', function() {
+        bookContainer.style.display = 'none';
+    })
+}
